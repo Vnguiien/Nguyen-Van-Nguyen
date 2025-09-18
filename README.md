@@ -140,7 +140,7 @@ Khi chương trình được chạy, phía Client sẽ gửi các lệnh theo ch
 • Console phía Client hiển thị:
 
 <p align="center">
-  <img src="docs/client.png" width="484" height="139" alt="Client console" />
+  <img src="docs/Screenshot 2025-09-18 231500.png" width="484" height="139" alt="Client console" />
 </p>
 <p align="center"><i>Hình ảnh 1</i></p>
 
