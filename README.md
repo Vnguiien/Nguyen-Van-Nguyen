@@ -131,53 +131,57 @@ Quan sát log SMTP Client – Server trực tiếp trong console
 
 Trong phần này, hệ thống được minh họa bằng các hình ảnh chụp từ quá trình chạy chương trình. Các hình này giúp làm rõ cách thức giao tiếp giữa SMTP Client và SMTP Server, cũng như kết quả lưu trữ email trên server.
 
-⸻
+1. Xây dựng hệ thống SMTP Client – Server (Ứng dụng gửi/nhận email)
 
-3.1. Giao tiếp Client ↔ Server (Console log)
+Mô tả:
 
-Khi chương trình được chạy, phía Client sẽ gửi các lệnh theo chuẩn SMTP đến Server thông qua kết nối TCP Socket. Đồng thời, Server sẽ phản hồi bằng các mã trạng thái.
+Xây dựng SMTP Server để lắng nghe và xử lý các yêu cầu gửi email.
 
-• Console phía Client hiển thị:
+Xây dựng SMTP Client để gửi email theo đúng chuẩn giao thức SMTP.
 
-<p align="center">
-  <img src="docs/Screenshot 2025-09-18 231500.png" width="484" height="139" alt="Client console" />
-</p>
-<p align="center"><i>Hình ảnh 1</i></p>
+Email hỗ trợ tiêu đề, nội dung, người gửi, người nhận và file đính kèm.
 
-• Console phía Server hiển thị:
+Server phản hồi lại client bằng mã trạng thái chuẩn SMTP (thông qua Response).
 
-<p align="center">
-  <img src="docs/server.png" width="615" height="260" alt="Server console" />
-</p>
-<p align="center"><i>Hình ảnh 2</i></p>
+Thành phần chính:
 
----
+SMTPServer.java: Xử lý kết nối và lưu trữ email.
 
-### 3.2. Email được lưu trên Server
-
-- Sau khi client gửi email thành công, Server sẽ tự động tạo thư mục `mailbox/` (nếu chưa tồn tại) và lưu toàn bộ nội dung email thành file `.txt`.
-
-• File được tạo:
+SMTPClient.java: Kết nối server, gửi lệnh SMTP (Command.java) và nhận phản hồi.
 
 <p align="center">
-  <img src="docs/Screenshot 2025-09-18 231500.png" width="240" height="148" alt="Mailbox file" />
+  <img src="Screenshot 2025-09-18 231500.png" width="240" height="148" alt="Mailbox file" />
 </p>
-<p align="center"><i>Hình ảnh 3</i></p>
+<p align="center"><i>Hình ảnh 1 </i></p>
 
-• Nội dung file email:
+2. Ứng dụng đăng nhập và quản lý người dùng (LoginApp)
+
+Mô tả:
+
+Phát triển ứng dụng đăng nhập bằng Java.
+
+Người dùng đăng nhập bằng username/password.
+
+Dữ liệu được lưu và kiểm tra qua cơ sở dữ liệu (thông qua DatabaseHelper.java).
+
+Có thể tích hợp với hệ thống email để gửi thông báo (ví dụ: đăng nhập thành công/không thành công).
+
+Thành phần chính:
+
+LoginApp.java: Giao diện đăng nhập, xử lý xác thực người dùng.
+
+DatabaseHelper.java: Quản lý kết nối và thao tác cơ sở dữ liệu.
+
+Kỹ năng đạt được:
+
+Làm việc với cơ sở dữ liệu trong Java (SQLite/MySQL).
+
+Thiết kế và triển khai chức năng xác thực, bảo mật.
 
 <p align="center">
-  <img src="docs/email-content.png" width="387" height="164" alt="Email content" />
+  <img src="Screenshot 2025-09-18 233834.png" width="240" height="148" alt="Mailbox file" />
 </p>
-<p align="center"><i>Hình ảnh 4</i></p>
-
-• Giao diện email:
-
-<p align="center">
-  <img src="docs/email-ui.png" width="488" height="444" alt="Email UI" />
-</p>
-<p align="center"><i>Hình ảnh 5</i></p>
-
+<p align="center"><i>Hình ảnh 2 </i></p>
 
 ## ⚙️ 4. Các bước cài đặt
 
@@ -185,96 +189,60 @@ Khi chương trình được chạy, phía Client sẽ gửi các lệnh theo ch
 
 ⸻
 
-4.1. Chuẩn bị môi trường
+1. Tạo Project mới
 
-    Trước khi chạy hệ thống, cần chuẩn bị:
-    
-1. Cài đặt JDK (Java Development Kit)
-        
-     • Phiên bản khuyến nghị: JDK 8 trở lên
-     
-     • Kiểm tra bằng lệnh:
+Mở Eclipse → File → New → Java Project.
 
-        java -version
+Đặt tên project, ví dụ: EmailApp.
 
-2. Cài đặt IDE để lập trình và chạy chương trình
-   
-         • Có thể sử dụng Eclipse IDE, IntelliJ IDEA hoặc NetBeans.
-         
-         • Trong đề tài này, IDE phổ biến nhất là Eclipse.
- 
-3. Cấu trúc thư mục project
-    
-- Sau khi tạo project Java trong Eclipse, sắp xếp các file theo cấu trúc:
+Bấm Finish.
 
-<p align="center"> <img width="231" height="275" alt="image" src="https://github.com/user-attachments/assets/3f0075dd-6231-4601-b568-2e8f2e5e89a3" /> </p>
-<p align="center"><i>Hình ảnh 6</i></p>
-4.2. Chạy chương trình
+2. Thêm các file mã nguồn
 
-4.2.1. Chạy Server
+Trong project vừa tạo, mở thư mục src.
 
- 1. Mở file SmtpServer.java trong Eclipse.
-    
- 2. Chọn Run As → Java Application.
-    
- 3. Console của Eclipse hiển thị thông báo:
+Copy tất cả các file .java bạn đã tải lên (LoginApp.java, MainApp.java, SMTPClient.java, SMTPServer.java, DatabaseHelper.java, EmailMessage.java, Attachment.java, Command.java, Response.java) vào thư mục src.
 
-<p align="center"> <img width="455" height="59" alt="image" src="https://github.com/user-attachments/assets/1435de41-91fd-407e-91b5-7ab6effe72d2" /> </p>
-<p align="center"><i>Hình ảnh 7</i></p>
-4.2.2. Chạy Client
+Eclipse sẽ tự động biên dịch nếu không có lỗi.
 
- 1. Mở file SmtpClientUI.java trong Eclipse.
-    
- 2. Chọn Run As → Java Application.
-    
- 3. Giao diện ứng dụng hiển thị cửa sổ với:
-    
-         • Ô nhập người nhận.
-         
-         • Ô nhập nội dung email.
- 
- • Nút ✉ Gửi Email.
+3. Thêm thư viện SQLite JDBC
 
-Khi người dùng bấm nút gửi, client sẽ:
+Vì dự án có file DatabaseHelper.java → chắc chắn dùng SQLite, bạn cần thêm thư viện JDBC driver:
 
-     • Tạo kết nối TCP đến server (cổng 2525).
-     
-     • Gửi lệnh SMTP: HELO, MAIL FROM, RCPT TO, DATA.
-     
-     • Gửi nội dung email.
-     
-     • Kết thúc bằng dấu "." theo chuẩn SMTP.
-     
-     • Đóng kết nối bằng lệnh QUIT.
+Tải sqlite-jdbc-<phiên_bản>.jar từ Maven Central 
 
-4.2.3. Kiểm tra kết quả
+Trong Eclipse, click chuột phải vào project → Build Path → Configure Build Path.
 
- 1. Sau khi email được gửi thành công, server sẽ tự động tạo thư mục mailbox/ (nếu chưa có).
-    
- 2. Mỗi email sẽ được lưu thành một file .txt với tên theo thời gian, ví dụ:
+Chọn tab Libraries → Add External JARs….
 
-<p align="center"> <img width="197" height="32" alt="image" src="https://github.com/user-attachments/assets/321c6abe-641d-426b-b984-b008b41b45b1" /> </p>
-<p align="center"><i>Hình ảnh 8</i></p>
-3. Nội dung file email bao gồm:
-   
-         • Người gửi
-         
-         • Người nhận
-         
-         • Chủ đề
-         
-         • Thời gian
-         
-         • Nội dung email
+Thêm file sqlite-jdbc-xxx.jar.
 
-Ví dụ:
+Bấm Apply and Close.
 
-<p align="center"> <img width="393" height="108" alt="image" src="https://github.com/user-attachments/assets/bdfdc47c-27ff-470a-8205-51154ec6ebda" /> </p>
-<p align="center"><i>Hình ảnh 9</i></p>
+4. Xác định class chạy chính
+
+Nếu chương trình mở màn hình đăng nhập trước → chạy LoginApp.java.
+
+Nếu chương trình quản lý chính ở MainApp.java → chạy file đó.
+(Thường thì MainApp là entry point, nhưng bạn có thể mở file .java và kiểm tra có public static void main(String[] args) trong đó để biết class nào là main).
+
+5. Chạy chương trình
+
+Trong Package Explorer, chọn file MainApp.java hoặc LoginApp.java.
+
+Nhấn chuột phải → Run As → Java Application.
+
+Ứng dụng sẽ chạy, và có thể tạo file database (.db) trong thư mục gốc project.
+
+6. Kiểm tra database (nếu cần)
+
+Sau khi chạy, bạn sẽ thấy file .db trong thư mục project.
+
+Có thể mở bằng DB Browser for SQLite để xem dữ liệu.
 
 ## 📞 5. Liên hệ
-- 💌 Email: thankfwong23@gmail.com  
-- ☎️ SĐT: 0383 609 685 
+- 💌 Email: nvn60211@gmail.com  
+- ☎️ SĐT: 0866659701
 
 
 © 2025 AIoTLab, Faculty of Information Technology, DaiNam University. All rights reserved.
