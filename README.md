@@ -22,9 +22,19 @@
 
 ## 📖 1. Giới thiệu
 
-- Đề tài: Gửi email mô phỏng qua SMTP bằng Socket 
-- Hệ thống mô phỏng quá trình gửi email qua giao thức SMTP (Simple Mail Transfer Protocol)
-- Người dùng nhập thông tin email qua giao diện Swing, client gửi lệnh SMTP qua TCP socket đến server, server sẽ lưu email thành file .txt trong thư mục mailbox/.
+Đề tài: Gửi email mô phỏng qua SMTP bằng Socket
+
+Mục tiêu: Xây dựng hệ thống mô phỏng quá trình gửi email qua giao thức SMTP (Simple Mail Transfer Protocol).
+
+Cách hoạt động:
+
+Người dùng nhập thông tin email (người gửi, người nhận, tiêu đề, nội dung, tệp đính kèm) qua giao diện Swing.
+
+Client gửi các lệnh SMTP qua TCP Socket đến Server.
+
+Server xử lý yêu cầu, phản hồi theo chuẩn mã SMTP, sau đó lưu email thành file .txt trong thư mục mailbox/.
+
+Ứng dụng mô phỏng này giúp sinh viên hiểu rõ hơn về cách một máy khách (email client) như Outlook, Gmail hoạt động khi giao tiếp với máy chủ SMTP, nhưng trong phạm vi an toàn và đơn giản hơn (lưu file thay vì gửi email thật).
 
 
 
@@ -36,112 +46,86 @@
 
 2.1. Ngôn ngữ lập trình Java
 
-    Java là một ngôn ngữ lập trình hướng đối tượng, đa nền tảng, được phát triển bởi Sun Microsystems (nay thuộc Oracle). Java nổi bật nhờ nguyên lý “Write Once, Run Anywhere”, tức là chương trình viết một lần có thể chạy trên nhiều hệ điều hành khác nhau nhờ Java Virtual Machine (JVM).
+Java là ngôn ngữ lập trình hướng đối tượng, đa nền tảng, chạy trên JVM (Java Virtual Machine) với phương châm "Write Once, Run Anywhere".
 
-Trong đề tài này, Java được lựa chọn vì:
+Trong hệ thống này, Java được lựa chọn vì:
 
-     • Hỗ trợ mạnh mẽ các thư viện Socket, cho phép lập trình mạng dễ dàng.
-     
-     • Có API I/O (Input/Output) phong phú để đọc/ghi dữ liệu từ client và server.
-     
-     • Cộng đồng lớn, nhiều tài liệu tham khảo.
-     
-     • Khả năng chạy ổn định trên nhiều hệ điều hành (Windows, Linux, macOS).
+Hỗ trợ mạnh mẽ lập trình Socket và đa luồng (multithreading).
 
-Java giúp việc xây dựng mô hình Client – Server trở nên trực quan, dễ hiểu, đồng thời đảm bảo chương trình có thể tái sử dụng và mở rộng.
+Thư viện I/O phong phú để đọc/ghi dữ liệu giữa client – server.
+
+Có cộng đồng lớn, tài liệu hỗ trợ phong phú.
+
+Dễ dàng xây dựng giao diện đồ họa Swing để nhập email và quản lý tương tác người dùng..
 
 ⸻
 
 2.2. Socket trong Java
 
-Socket là điểm cuối (endpoint) trong quá trình giao tiếp giữa hai tiến trình qua mạng. Trong Java, gói java.net cung cấp các lớp quan trọng:
+Socket là điểm cuối (endpoint) cho quá trình giao tiếp giữa Client – Server qua mạng.
 
-     • ServerSocket: Dùng để tạo máy chủ, lắng nghe yêu cầu từ client.
-     
-     • Socket: Dùng để tạo kết nối từ phía client đến server.
-     
-     • Các phương thức đọc/ghi (InputStream, OutputStream) cho phép trao đổi dữ liệu qua kết nối.
+ServerSocket: tạo máy chủ, lắng nghe yêu cầu.
 
-Trong hệ thống này:
+Socket: tạo kết nối từ client đến server.
 
-     • Server mở cổng 2525, chờ client kết nối.
-     
-     • Client kết nối qua Socket và gửi các lệnh theo chuẩn SMTP (HELO, MAIL FROM, RCPT TO, DATA…).
-     
-     • Server phản hồi bằng các mã trạng thái (220, 250, 354, 221…) như một máy chủ SMTP thực tế.
+InputStream / OutputStream: trao đổi dữ liệu qua kết nối.
 
-Việc sử dụng TCP Socket đảm bảo:
+Trong ứng dụng này:
 
-     • Kết nối tin cậy: Dữ liệu gửi đi không bị mất hoặc sai thứ tự.
-     
-     • Giao tiếp hai chiều: Client có thể gửi lệnh, server phản hồi ngay lập tức.
-     
-     • Đồng bộ hóa: Thích hợp cho mô phỏng giao thức SMTP vốn cần phản hồi tuần tự.
+Server mở cổng 2525 và chờ Client kết nối.
+
+Client gửi các lệnh SMTP như:
+
+HELO → chào server
+
+MAIL FROM → khai báo địa chỉ gửi
+
+RCPT TO → khai báo địa chỉ nhận
+
+DATA → gửi nội dung email
+
+QUIT → thoát kết nối
+
+Server phản hồi bằng mã chuẩn SMTP:
+
+220 (Ready), 250 (OK), 354 (Start mail input), 221 (Bye).
+
+ Việc sử dụng TCP Socket đảm bảo dữ liệu được gửi tin cậy, đúng thứ tự, mô phỏng sát cách thức SMTP hoạt động trong thực tế.
 
 
-2.3. Java I/O (Input/Output)
+2.3. Mô hình Client – Server
 
-Trong ứng dụng mạng, dữ liệu trao đổi đều ở dạng chuỗi ký tự. Java cung cấp hệ thống I/O Streams mạnh mẽ để xử lý:
+Hệ thống được xây dựng theo kiến trúc Client – Server:
 
-     • InputStreamReader + BufferedReader: đọc dữ liệu từ client.
-     
-     • OutputStreamWriter + BufferedWriter: gửi dữ liệu từ server đến client.
-     
-     • FileWriter + BufferedWriter: ghi nội dung email xuống file .txt.
+Client: Giao diện người dùng (Swing), nhập thông tin email → gửi lệnh SMTP đến server.
 
-Ưu điểm khi dùng I/O trong Java:
+Server: Nhận lệnh SMTP, xử lý, phản hồi → lưu email thành file .txt.
 
-     • Dễ dàng thao tác với dữ liệu dạng text.
-     
-     • Hỗ trợ buffer (bộ đệm), giúp tăng tốc độ xử lý.
-     
-     • Có thể kết hợp nhiều lớp I/O để đạt hiệu suất và tính linh hoạt. 
-     
-Trong hệ thống SMTP mô phỏng, I/O đóng vai trò quan trọng để:
+📌 Ưu điểm:
 
-     1. Gửi lệnh từ client đến server.
-        
-     2. Nhận phản hồi từ server.
-        
-     3. Lưu email thành file trong thư mục mailbox/.
+Giúp sinh viên dễ hình dung cách ứng dụng email thật (Gmail, Outlook) giao tiếp với SMTP server.
+
+Dễ dàng mở rộng để bổ sung thêm tính năng: xác thực người dùng, hộp thư đến, gửi nhiều email cùng lúc…
 
 ⸻
 
-2.4. Mô hình Client – Server
+2.4. IDE: Eclipse / IntelliJ IDEA
 
-Mô hình Client – Server là kiến trúc phổ biến trong lập trình mạng.
+Để phát triển ứng dụng, nhóm sử dụng IDE hỗ trợ Java:
 
-     • Client: Gửi yêu cầu (request).
-     
-     • Server: Xử lý yêu cầu và trả về phản hồi (response).
+Eclipse: miễn phí, phổ biến.
 
-Trong bài toán này:
+IntelliJ IDEA: hiện đại, hỗ trợ nhiều tiện ích như debug, gợi ý code.
 
-     • Client đóng vai trò phần mềm gửi email.
-     
-     • Server đóng vai trò máy chủ SMTP giả lập.
-     
-     • Sau khi nhận đủ dữ liệu, server sẽ lưu email thành file để thay cho việc gửi ra Internet.
+Ưu điểm khi dùng IDE:
 
-Việc sử dụng mô hình Client – Server giúp hệ thống dễ dàng mô phỏng cách mà các phần mềm email (Outlook, Gmail, Thunderbird…) giao tiếp với máy chủ SMTP thật ngoài Internet.
+Quản lý project và các file .java rõ ràng.
+
+Debug và chạy chương trình thuận tiện.
+
+Quan sát log SMTP Client – Server trực tiếp trong console
 
 ⸻
-
-2.5. IDE: Eclipse / IntelliJ IDEA
-
-Để lập trình và chạy ứng dụng, nhóm sử dụng IDE (Integrated Development Environment):
-
-     • Eclipse: miễn phí, phổ biến trong cộng đồng Java.
-     
-     • IntelliJ IDEA: giao diện hiện đại, hỗ trợ tính năng thông minh (code completion, debug).
-
-Lợi ích của việc dùng IDE:
-
-     • Quản lý project dễ dàng.
-     
-     • Hỗ trợ chạy và debug nhanh.
-     
-     • Tích hợp console để quan sát log giao tiếp Client – Server.
 
  ## 💻 3. Các hình ảnh chức năng
 
