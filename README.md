@@ -150,7 +150,7 @@ SMTPServer.java: Xử lý kết nối và lưu trữ email.
 SMTPClient.java: Kết nối server, gửi lệnh SMTP (Command.java) và nhận phản hồi.
 
 <p align="center">
-  <img src="Screenshot 2025-09-18 231500.png" width="240" height="148" alt="Mailbox file" />
+  <img src="docs/Screenshot 2025-09-18 231500.png" width="240" height="148" alt="Mailbox file" />
 </p>
 <p align="center"><i>Hình ảnh 1 </i></p>
 
@@ -179,15 +179,11 @@ Làm việc với cơ sở dữ liệu trong Java (SQLite/MySQL).
 Thiết kế và triển khai chức năng xác thực, bảo mật.
 
 <p align="center">
-  <img src="Screenshot 2025-09-18 233834.png" width="240" height="148" alt="Mailbox file" />
+  <img src="docs/Screenshot 2025-09-18 233834.png" width="240" height="148" alt="Mailbox file" />
 </p>
 <p align="center"><i>Hình ảnh 2 </i></p>
 
 ## ⚙️ 4. Các bước cài đặt
-
-    Phần này mô tả các bước chuẩn bị, cài đặt môi trường và chạy thử hệ thống SMTP mô phỏng bằng Java. Toàn bộ các bước đều có thể thực hiện trên một máy tính cá nhân mà không cần Internet, vì chương trình chỉ chạy trong mạng cục bộ (localhost).
-
-⸻
 
 1. Tạo Project mới
 
