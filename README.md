@@ -135,45 +135,49 @@ Trong phần này, hệ thống được minh họa bằng các hình ảnh ch�
 
 3.1. Giao tiếp Client ↔ Server (Console log)
 
-- Khi chương trình được chạy, phía Client sẽ gửi các lệnh theo chuẩn SMTP đến Server thông qua kết nối TCP Socket. Đồng thời, Server sẽ phản hồi bằng các mã trạng thái.
+Khi chương trình được chạy, phía Client sẽ gửi các lệnh theo chuẩn SMTP đến Server thông qua kết nối TCP Socket. Đồng thời, Server sẽ phản hồi bằng các mã trạng thái.
 
 • Console phía Client hiển thị:
- 
-<p align="center"> <img width="484" height="139" alt="image" src="https://github.com/user-attachments/assets/45cff8fa-91a3-466c-9e13-0087313ee716" /> </p>
+
+<p align="center">
+  <img src="docs/client.png" width="484" height="139" alt="Client console" />
+</p>
 <p align="center"><i>Hình ảnh 1</i></p>
 
 • Console phía Server hiển thị:
 
-<p align="center"> <img width="615" height="260" alt="image" src="https://github.com/user-attachments/assets/67b3e0dc-930f-4542-a42d-8186527356c1" /> </p>
+<p align="center">
+  <img src="docs/server.png" width="615" height="260" alt="Server console" />
+</p>
 <p align="center"><i>Hình ảnh 2</i></p>
-3.2. Email được lưu trên Server
 
-- Sau khi client gửi email thành công, Server sẽ tự động tạo thư mục mailbox/ (nếu chưa tồn tại) và lưu toàn bộ nội dung email thành file .txt.
+---
 
- • File được tạo:
- 
- <p align="center"> <img width="240" height="148" alt="image" src="https://github.com/user-attachments/assets/80e5ce83-27a8-44dc-abf6-c58f8925d248" /> </p>
+### 3.2. Email được lưu trên Server
+
+- Sau khi client gửi email thành công, Server sẽ tự động tạo thư mục `mailbox/` (nếu chưa tồn tại) và lưu toàn bộ nội dung email thành file `.txt`.
+
+• File được tạo:
+
+<p align="center">
+  <img src="docs/Screenshot 2025-09-18 231500.png" width="240" height="148" alt="Mailbox file" />
+</p>
 <p align="center"><i>Hình ảnh 3</i></p>
- • Nội dung file email:
 
-<p align="center"> <img width="387" height="164" alt="image" src="https://github.com/user-attachments/assets/0ca875b3-42c7-4229-8351-7e1c41438110" /> </p>
+• Nội dung file email:
+
+<p align="center">
+  <img src="docs/email-content.png" width="387" height="164" alt="Email content" />
+</p>
 <p align="center"><i>Hình ảnh 4</i></p>
 
- • Giao diện email:
-<p align="center"> <img width="488" height="444" alt="image" src="https://github.com/user-attachments/assets/5bebf9c6-92e4-43d2-90ba-e56099a23964" /> </p>
+• Giao diện email:
+
+<p align="center">
+  <img src="docs/email-ui.png" width="488" height="444" alt="Email UI" />
+</p>
 <p align="center"><i>Hình ảnh 5</i></p>
 
- 3.3. Kiến trúc hệ thống
-
-Hệ thống được xây dựng theo kiến trúc Client–Server qua TCP Socket, cụ thể:
-
-    [SMTP Client] <--TCP Socket--> [SMTP Server] --> [Mailbox Saver -> File .txt]
-    
-    • SMTP Client: Ứng dụng Java có giao diện, cho phép nhập người nhận và nội dung email.
-    
-    • SMTP Server: Chạy nền, lắng nghe trên cổng 2525, xử lý lệnh từ client.
-    
-    • Mailbox Saver: Chức năng lưu trữ email vào thư mục mailbox/ dưới dạng file văn bản .txt.
 
 ## ⚙️ 4. Các bước cài đặt
 
