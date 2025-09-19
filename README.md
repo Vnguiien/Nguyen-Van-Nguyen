@@ -77,7 +77,7 @@ Nút chức năng:
 - Nếu tên đăng nhập đã tồn tại → báo lỗi để nhập lại.
 
 <p align="center">
-  <img src="docs/anhdaky.jpg" width="240" height="148" alt="Mailbox file" />
+  <img src="docs/anhdaky.jpg" width="400" height="400" alt="Mailbox file" />
 </p>
 <p align="center"><i>Hình ảnh Đăng Ký Thành Công </i></p>
 
@@ -112,12 +112,12 @@ Khung điều khiển bên phải:
 Nút Làm mới: để tải lại hộp thư đến.
 
 <p align="center">
-  <img src="docs/a1.jpg" width="240" height="148" alt="Mailbox file" />
+  <img src="docs/a1.jpg" width="400" height="400" alt="Mailbox file" />
 </p>
 <p align="center"><i>Hình ảnh 1 </i></p>
 
 <p align="center">
-  <img src="docs/a2.jpg" width="240" height="148" alt="Mailbox file" />
+  <img src="docs/a2.jpg" width="400" height="400" alt="Mailbox file" />
 </p>
 <p align="center"><i>Hình ảnh 2 </i></p>
 
