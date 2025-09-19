@@ -116,7 +116,22 @@ Quan sát log SMTP Client – Server trực tiếp trong console
 
 
  ## 💻 3. Các hình ảnh chức năng
- 3.1 Đăng kí 
+ 3.1 Phần Giao Diện Đăng Nhập Và Đăng Ký
+
+ChatMail — Đăng nhập.
+
+Logo / Tiêu đề giữa màn hình: hiển thị tên ứng dụng ChatMail.
+Tên đăng nhập: nơi người dùng nhập tên tài khoản.
+Mật khẩu: nơi nhập mật khẩu, thường được ẩn ký tự.
+Nút chức năng:
+Đăng nhập: để xác thực thông tin người dùng.
+Đăng ký: mở form đăng ký tài khoản mới.
+<p align="center">
+  <img src="docs/dangnhap.jpg" width="240" height="148" alt="Mailbox file" />
+</p>
+<p align="center"><i>Hình ảnh Giao Diên </i></p>
+
+ 3.2 Đăng kí 
 - Khi người dùng điền thông tin và xác nhận đăng ký:
 
 - Ứng dụng gọi tới DatabaseHelper
@@ -128,7 +143,49 @@ Quan sát log SMTP Client – Server trực tiếp trong console
 <p align="center">
   <img src="docs/anhdaky.jpg" width="240" height="148" alt="Mailbox file" />
 </p>
-<p align="center"><i>Hình ảnh Đăng Ký </i></p>
+<p align="center"><i>Hình ảnh Đăng Ký Thành Công </i></p>
+
+3.3 Khung Chat
+
+Khung bên trái (lịch sử hội thoại/chat):
+Hiển thị tin nhắn đã gửi và nhận giữa 2 tài khoản (ví dụ 2@gmail.com ↔ 3@gmail.com).
+
+Tin nhắn có kèm dấu thời gian [yyyy-MM-dd HH:mm:ss].
+
+Có thể thêm emoji 😁 (như bạn thấy trong ảnh).
+
+Khung bên phải (Hộp thư đến):
+Hiển thị các thư được lưu trên máy chủ (SMTP/Database).
+
+Thanh nhập liệu (gửi tin nhắn):
+
+Người nhận: nhập email người nhận (ví dụ: 2@gmail.com).
+
+Tiêu đề: nhập chủ đề (ở đây là “Chat”).
+
+Đính kèm: có nút chọn file để gửi kèm.
+
+Ô nhập văn bản tin nhắn.
+
+Nút Gửi: để gửi tin đi.
+
+Nút emoji để chèn icon cảm xúc.
+
+Khung điều khiển bên phải:
+
+Nút Làm mới: để tải lại hộp thư đến.
+
+<p align="center">
+  <img src="docs/a1.jpg" width="240" height="148" alt="Mailbox file" />
+</p>
+<p align="center"><i>Hình ảnh 1 </i></p>
+
+<p align="center">
+  <img src="docs/a2.jpg" width="240" height="148" alt="Mailbox file" />
+</p>
+<p align="center"><i>Hình ảnh 2 </i></p>
+
+
 
 ## ⚙️ 4. Các bước cài đặt
 
