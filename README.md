@@ -63,7 +63,7 @@ Nút chức năng:
 Đăng nhập: để xác thực thông tin người dùng.
 Đăng ký: mở form đăng ký tài khoản mới.
 <p align="center">
-  <img src="docs/dangnhap.jpg" width="240" height="148" alt="Mailbox file" />
+  <img src="docs/dangnhap.jpg" width="400" height="400" alt="Mailbox file" />
 </p>
 <p align="center"><i>Hình ảnh Giao Diên </i></p>
 
