@@ -101,13 +101,6 @@ Client: Giao diện người dùng (Swing), nhập thông tin email → gửi l�
 
 Server: Nhận lệnh SMTP, xử lý, phản hồi → lưu email thành file .txt.
 
-📌 Ưu điểm:
-
-Giúp sinh viên dễ hình dung cách ứng dụng email thật (Gmail, Outlook) giao tiếp với SMTP server.
-
-Dễ dàng mở rộng để bổ sung thêm tính năng: xác thực người dùng, hộp thư đến, gửi nhiều email cùng lúc…
-
-⸻
 
 2.4. IDE: Eclipse / IntelliJ IDEA
 
@@ -125,15 +118,12 @@ Debug và chạy chương trình thuận tiện.
 
 Quan sát log SMTP Client – Server trực tiếp trong console
 
-⸻
 
  ## 💻 3. Các hình ảnh chức năng
 
 Trong phần này, hệ thống được minh họa bằng các hình ảnh chụp từ quá trình chạy chương trình. Các hình này giúp làm rõ cách thức giao tiếp giữa SMTP Client và SMTP Server, cũng như kết quả lưu trữ email trên server.
 
 1. Xây dựng hệ thống SMTP Client – Server (Ứng dụng gửi/nhận email)
-
-Mô tả:
 
 Xây dựng SMTP Server để lắng nghe và xử lý các yêu cầu gửi email.
 
@@ -156,8 +146,6 @@ SMTPClient.java: Kết nối server, gửi lệnh SMTP (Command.java) và nhận
 
 2. Ứng dụng đăng nhập và quản lý người dùng (LoginApp)
 
-Mô tả:
-
 Phát triển ứng dụng đăng nhập bằng Java.
 
 Người dùng đăng nhập bằng username/password.
@@ -171,12 +159,6 @@ Thành phần chính:
 LoginApp.java: Giao diện đăng nhập, xử lý xác thực người dùng.
 
 DatabaseHelper.java: Quản lý kết nối và thao tác cơ sở dữ liệu.
-
-Kỹ năng đạt được:
-
-Làm việc với cơ sở dữ liệu trong Java (SQLite/MySQL).
-
-Thiết kế và triển khai chức năng xác thực, bảo mật.
 
 <p align="center">
   <img src="docs/Screenshot 2025-09-18 233834.png" width="240" height="148" alt="Mailbox file" />
