@@ -42,8 +42,6 @@ Server xử lý yêu cầu, phản hồi theo chuẩn mã SMTP, sau đó lưu em
 
 - Trong quá trình xây dựng hệ thống mô phỏng gửi email qua giao thức SMTP bằng Socket, nhóm sử dụng các công nghệ chính sau:
 
-⸻
-
 2.1. Ngôn ngữ lập trình Java
 
 Java là ngôn ngữ lập trình hướng đối tượng, đa nền tảng, chạy trên JVM (Java Virtual Machine) với phương châm "Write Once, Run Anywhere".
@@ -57,8 +55,6 @@ Thư viện I/O phong phú để đọc/ghi dữ liệu giữa client – server
 Có cộng đồng lớn, tài liệu hỗ trợ phong phú.
 
 Dễ dàng xây dựng giao diện đồ họa Swing để nhập email và quản lý tương tác người dùng..
-
-⸻
 
 2.2. Socket trong Java
 
@@ -120,50 +116,19 @@ Quan sát log SMTP Client – Server trực tiếp trong console
 
 
  ## 💻 3. Các hình ảnh chức năng
+ 3.1 Đăng kí 
+- Khi người dùng điền thông tin và xác nhận đăng ký:
 
-Trong phần này, hệ thống được minh họa bằng các hình ảnh chụp từ quá trình chạy chương trình. Các hình này giúp làm rõ cách thức giao tiếp giữa SMTP Client và SMTP Server, cũng như kết quả lưu trữ email trên server.
+- Ứng dụng gọi tới DatabaseHelper
 
-1. Xây dựng hệ thống SMTP Client – Server (Ứng dụng gửi/nhận email)
+- Nếu đăng ký thành công → lưu thông tin vào database.
 
-Xây dựng SMTP Server để lắng nghe và xử lý các yêu cầu gửi email.
-
-Xây dựng SMTP Client để gửi email theo đúng chuẩn giao thức SMTP.
-
-Email hỗ trợ tiêu đề, nội dung, người gửi, người nhận và file đính kèm.
-
-Server phản hồi lại client bằng mã trạng thái chuẩn SMTP (thông qua Response).
-
-Thành phần chính:
-
-SMTPServer.java: Xử lý kết nối và lưu trữ email.
-
-SMTPClient.java: Kết nối server, gửi lệnh SMTP (Command.java) và nhận phản hồi.
+- Nếu tên đăng nhập đã tồn tại → báo lỗi để nhập lại.
 
 <p align="center">
-  <img src="docs/Screenshot 2025-09-18 231500.png" width="240" height="148" alt="Mailbox file" />
+  <img src="docs/anhdaky.jpg" width="240" height="148" alt="Mailbox file" />
 </p>
-<p align="center"><i>Hình ảnh 1 </i></p>
-
-2. Ứng dụng đăng nhập và quản lý người dùng (LoginApp)
-
-Phát triển ứng dụng đăng nhập bằng Java.
-
-Người dùng đăng nhập bằng username/password.
-
-Dữ liệu được lưu và kiểm tra qua cơ sở dữ liệu (thông qua DatabaseHelper.java).
-
-Có thể tích hợp với hệ thống email để gửi thông báo (ví dụ: đăng nhập thành công/không thành công).
-
-Thành phần chính:
-
-LoginApp.java: Giao diện đăng nhập, xử lý xác thực người dùng.
-
-DatabaseHelper.java: Quản lý kết nối và thao tác cơ sở dữ liệu.
-
-<p align="center">
-  <img src="docs/Screenshot 2025-09-18 233834.png" width="240" height="148" alt="Mailbox file" />
-</p>
-<p align="center"><i>Hình ảnh 2 </i></p>
+<p align="center"><i>Hình ảnh Đăng Ký </i></p>
 
 ## ⚙️ 4. Các bước cài đặt
 
