@@ -42,77 +42,13 @@ Server xử lý yêu cầu, phản hồi theo chuẩn mã SMTP, sau đó lưu em
 
 - Trong quá trình xây dựng hệ thống mô phỏng gửi email qua giao thức SMTP bằng Socket, nhóm sử dụng các công nghệ chính sau:
 
-2.1. Ngôn ngữ lập trình Java
+- Ngôn ngữ lập trình Java
 
-Java là ngôn ngữ lập trình hướng đối tượng, đa nền tảng, chạy trên JVM (Java Virtual Machine) với phương châm "Write Once, Run Anywhere".
+- Socket trong Java
 
-Trong hệ thống này, Java được lựa chọn vì:
+- Mô hình Client – Server
 
-Hỗ trợ mạnh mẽ lập trình Socket và đa luồng (multithreading).
-
-Thư viện I/O phong phú để đọc/ghi dữ liệu giữa client – server.
-
-Có cộng đồng lớn, tài liệu hỗ trợ phong phú.
-
-Dễ dàng xây dựng giao diện đồ họa Swing để nhập email và quản lý tương tác người dùng..
-
-2.2. Socket trong Java
-
-Socket là điểm cuối (endpoint) cho quá trình giao tiếp giữa Client – Server qua mạng.
-
-ServerSocket: tạo máy chủ, lắng nghe yêu cầu.
-
-Socket: tạo kết nối từ client đến server.
-
-InputStream / OutputStream: trao đổi dữ liệu qua kết nối.
-
-Trong ứng dụng này:
-
-Server mở cổng 2525 và chờ Client kết nối.
-
-Client gửi các lệnh SMTP như:
-
-HELO → chào server
-
-MAIL FROM → khai báo địa chỉ gửi
-
-RCPT TO → khai báo địa chỉ nhận
-
-DATA → gửi nội dung email
-
-QUIT → thoát kết nối
-
-Server phản hồi bằng mã chuẩn SMTP:
-
-220 (Ready), 250 (OK), 354 (Start mail input), 221 (Bye).
-
- Việc sử dụng TCP Socket đảm bảo dữ liệu được gửi tin cậy, đúng thứ tự, mô phỏng sát cách thức SMTP hoạt động trong thực tế.
-
-
-2.3. Mô hình Client – Server
-
-Hệ thống được xây dựng theo kiến trúc Client – Server:
-
-Client: Giao diện người dùng (Swing), nhập thông tin email → gửi lệnh SMTP đến server.
-
-Server: Nhận lệnh SMTP, xử lý, phản hồi → lưu email thành file .txt.
-
-
-2.4. IDE: Eclipse / IntelliJ IDEA
-
-Để phát triển ứng dụng, nhóm sử dụng IDE hỗ trợ Java:
-
-Eclipse: miễn phí, phổ biến.
-
-IntelliJ IDEA: hiện đại, hỗ trợ nhiều tiện ích như debug, gợi ý code.
-
-Ưu điểm khi dùng IDE:
-
-Quản lý project và các file .java rõ ràng.
-
-Debug và chạy chương trình thuận tiện.
-
-Quan sát log SMTP Client – Server trực tiếp trong console
+- IDE: Eclipse / IntelliJ IDEA
 
 
  ## 💻 3. Các hình ảnh chức năng
